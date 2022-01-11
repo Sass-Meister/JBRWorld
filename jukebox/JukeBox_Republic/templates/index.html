@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Party Time Baby</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Archivo Black', sans-serif;
+            background-color: #EDEDED;}
+        html,body { height:100%;}
+
+        p{
+            color:#1f202c;
+            text-align: center;
+        }
+
+        hr {
+            background-color:#1f202c;
+            height:2px;
+        }
+
+        #title{
+            font-size:8vw;
+            margin:0;
+        }
+
+        #createlink:link, #createlink:visited, #createlink:hover, #createlink:active{
+            color:#1f202c;
+            text-decoration: none;
+            font-size:25vw;
+            margin:0;
+        }
+
+        #createlinktext{
+            color:#1f202c;
+            font-size:25vw;
+            line-height:25vw;
+            margin:0;
+        }
+
+        input{
+            width:100%;
+            height:75vw;
+            font-size:25vw;
+            border: none;
+        }
+
+        ::-webkit-input-placeholder {
+            text-align: center;
+            white-space:pre-line;
+            position:relative;
+            top:-25vw;
+            line-height:25vw;
+        }
+    </style>
+</head>
+<body>
+    <p id="title">JukeBox Republic</p>
+    <hr>
+    {% if loggedin %}
+        <a id="createlink" href="/party/create"><p id="createlinktext">Create Room</p></a>
+    {% else %}
+        <a id="createlink" href="{{ loginlink }}"><p id="createlinktext">Create Room</p></a>
+    {% endif %}
+    <hr>
+    <form action="/party" method="get" id="login">
+        <input type="text" name="roomcode" placeholder="Enter Room Code" size="5" required>
+    </form>
+
+    {% if error %}
+    <script>alert("{{ errortext }}");</script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JukeBox Republic</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
+   <script src="{% static 'js/script.js' %}"></script>
+    <style>
+        hr {
+            background-color: #1f202c;
+            height: 2px;
+        }
+
+        * {
+            font-family: 'Archivo Black', sans-serif;
+            background-color: #EDEDED;
+        }
+
+        #createlink:link, #createlink:visited, #createlink:hover, #createlink:active{
+            color:#1f202c;
+        }
+        p{
+            color:#1f202c;
+        }
+
+        .left, .right {
+            width: 50%;
+            float: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        #header {
+            width: 100%;
+            height: 100%;
+            margin: auto;
+        }
+
+        #name {
+            font-size: 8vw;
+            line-height: 8vw;
+            margin: 0px;
+        }
+
+        #roomcode {
+            height: 8vw;
+            font-size: 8vw;
+            margin: 3vw;
+        }
+
+        #middle {
+            height: 100%;
+        }
+
+        #album {
+            display: block;
+            width: 95%;
+            height: 95%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #songname, #artist {
+            font-size: 4vw;
+            line-height: 4vw;
+        }
+
+        input {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 95%;
+            height: 15vw;
+            font-size: 5vw;
+            border: none;
+        }
+
+        ::-webkit-input-placeholder {
+            text-align: center;
+            white-space: pre-line;
+            position: relative;
+            line-height: 10vw;
+        }
+
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="left"><p id="name">JukeBox Republic</p></div>
+    <div class="right"><p id="roomcode">{{ roomcode }}</p></div>
+    <div class="clear"></div>
+</div>
+<hr>
+<div id="middle">
+    <div class="left">
+        <img id="album" src="{{ album_url }}">
+         <p id="songname">{{ songname }}</p>
+        <p id="artist">{{ artist }}</p>
+    </div>
+    <div class="right">
+        <form action="/addsong/" method="post">
+            {% csrf_token %}
+            <input type="text" placeholder="Song Name" name="track" required>
+            <input type="text" placeholder="Album" name="album">
+            <input type="text" placeholder="Artist" name="artist">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    <div class="clear"></div>
+</div>
+<hr>
+<div id="queue">
+
+</div>
+    {% if error  %}
+    <script>alert("{{ errortext }}");</script>
+    {% endif %}
+</body>
+</html>

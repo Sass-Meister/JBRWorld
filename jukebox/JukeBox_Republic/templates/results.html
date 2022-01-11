@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JukeBox Republic</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Archivo Black', sans-serif;
+            background-color: #EDEDED;
+        }
+        hr {
+            background-color: #1f202c;
+            height: 2px;
+        }
+
+        .left, .right {
+            width: 50%;
+            float: left;
+            position:relative;
+        }
+        .clear { clear: both; }
+         p { text-align: center; color:#1f202c; }
+
+         a:link, a:visited, a:hover, a:active { color:#1f202c; }
+        #name{
+            font-size: 3vh;
+            line-height: 3vh;
+            margin: 1.5vh;
+        }
+
+        #roomcode{
+            height: 3vh;
+            font-size: 3vh;
+            line-height: 3vh;
+            margin: 1.5vh;
+        }
+
+        .album {
+            margin:1vh;
+            display: block;
+            width: 95%;
+            height: 95%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .songname, .artist {
+            font-size: 3vh;
+            line-height: 3vh;
+        }
+
+    </style>
+</head>
+<div>
+<div id="header">
+    <div class="left"><p id="name">JukeBox Republic</p></div>
+    <div class="right"><p id="roomcode">{{ roomcode }}</p></div>
+    <div class="clear"></div>
+</div>
+<hr>
+
+{% for result in result_list %}
+    {% if forloop.counter0|divisibleby:2 %}
+        <div class="row">
+            <a href="{{ result.link }}">
+                <div class="left">
+                    <img class="album" src="{{ result.art }}">
+                    <p class="songname">{{ result.name }}</p>
+                    <p class="artist">{{ result.artist }}</p>
+                </div>
+            </a>
+    {% else %}
+            <a href="{{ result.link }}">
+                <div class="right">
+                    <img class="album" src="{{ result.art }}">
+                    <p class="songname">{{ result.name }}</p>
+                    <p class="artist">{{ result.artist }}</p>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </div>
+    {% endif %}
+{% endfor %}
+
+{% if result_list|length|divisibleby:2 %}
+    <div class="right"></div>
+    <div class="clear"></div>
+    </div>
+{% endif %}
+</body>
+</html>

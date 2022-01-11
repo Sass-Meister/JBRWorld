@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+
+  <!-- Required for Bootstrap -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- The choice of font for JBR -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+
+  <!-- Other stylings -->
+  <style>
+  	* { font-family: 'Archivo Black', sans-serif; }
+  	body { background-color: #EDEDED;
+  	       color:#1f202c; }
+
+  	.title {
+  		font-size: 5vh;
+  	}
+
+  	.createroom, .createroom:link, .createroom:visited, .createroom:hover, .createroom:active{
+            color:#1f202c;
+            font-size: 15vh;
+            line-height: 15vh;
+            text-align: center; /* I'm sure there is a better way to do this but I haven't figured it out */
+    }
+
+    .roomcode{
+        font-size:25vw;
+        background-color: #EDEDED;
+        border:none;
+    }
+  </style>
+</head>
+<body>
+	<div class="container-fluid d-flex flex-column">
+		<div class="row justify-content-center shadow"><p class="title">JukeBox Republic</p></div>
+		<div class="row justify-content-center shadow"><a class="createroom">Create Room</a></div>
+		<div class="row justify-content-center shadow flex-grow-1">
+            <form action="/party" method="get" id="login">
+                <input class="roomcode" type="text" name="roomcode" placeholder="Enter Room Code" size="5" required>
+            </form>
+        </div>
+	</div>
+</body>
+</html>
